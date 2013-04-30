@@ -76,13 +76,15 @@ module Permissions
       rule[last] = block_given? ? BlockHolder.new(block) : result
     end
 
-    def role(role_name, &block)
+    def role(*names, &block)
       raise "You cannot call role inside a controller or resource." if @c_group
-      @c_role = role_name
-      @c_group = nil
-      @c_element = nil
-      instance_eval(&block)
-      @c_role = nil
+      names.each do |name|
+        @c_role = name
+        @c_group = nil
+        @c_element = nil
+        instance_eval(&block)
+        @c_role = nil
+      end
     end
 
     def controller(*names, &block)
