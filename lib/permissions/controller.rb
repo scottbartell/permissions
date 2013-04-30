@@ -83,12 +83,17 @@ module Permissions
 
       # if no rule was found, assume default message and redirection
 
-      if !rule
-        rule = {
-          message: controller.instance_eval(&authorization.denied_message),
-          redirect_to: controller.instance_eval(&authorization.denied_path)
-        }
+      rule = {} if !rule
+      if rule.is_a? Hash
+        rule[:message]     ||= controller.instance_eval(&authorization.denied_message)
+        rule[:redirect_to] ||= controller.instance_eval(&authorization.denied_path)
       end
+      # if !rule
+      #   rule = {
+      #     message: controller.instance_eval(&authorization.denied_message),
+      #     redirect_to: controller.instance_eval(&authorization.denied_path)
+      #   }
+      # end
 
       rule_path = "/#{actual_path.join('/')}"
 
