@@ -1,0 +1,13 @@
+= Permissions {<img src="https://badge.fury.io/rb/permissions.png" alt="Gem Version" />}[http://badge.fury.io/rb/permissions]
+
+Wiki[https://github.com/yakko/permissions/wiki] | RubyGems[https://rubygems.org/gems/permissions]
+
+== Installation
+
+In <b>Rails 2</b>, add this to your environment.rb file.
+
+  config.gem "permissions"
+
+In <b>Rails 3</b> and <b>Rails 4</b>, add this to your Gemfile and run the +bundle+ command.
+
+  gem "permissions"
